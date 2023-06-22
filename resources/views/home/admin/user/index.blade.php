@@ -8,6 +8,7 @@
                         <td>No</td>
                         <td>Nama</td>
                         <td>Email</td>
+                        <td>Role</td>
                         <td>Action</td>
                     </tr>
                     @foreach ($user as $item)
@@ -17,6 +18,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>
+                        <td>{{ $item->role_id }}</td>
                         <td>
 
                             <div class="d-flex">

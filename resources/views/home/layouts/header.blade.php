@@ -27,25 +27,33 @@
           <li class="nav-item">
             <a class="nav-link {{ ($title === "Galeri") ? 'active' : '' }}" href="/galeri">Galeri</a>
           </li>
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+          <li class="nav-item">
+            <a class="nav-link {{ ($title === "Siswa") ? 'active' : '' }}" href="/siswa">Pendafataran</a>
+          </li>
+          {{-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/siswa" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Pendaftaran
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          {{-- <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item {{ ($title === "Guru") ? 'active' : '' }}" href="/guru">Guru</a></li>
             <li><a class="dropdown-item {{ ($title === "Siswa") ? 'active' : '' }}" href="/siswa">Siswa</a></li>
             <li><a class="dropdown-item {{ ($title === "Staff") ? 'active' : '' }}" href="/staff">Staff</a></li>
-          </ul>
-        </li>
-        </ul>
+          </ul> --}}
+        {{-- </li> --}}
+        {{-- </ul>  --}}
 
-        <div class="row d-flex">
-          <div class="col">
-            <a href="/login" class="btn btn-outline-light" >Masuk</a>
-            <a href="/daftar" class="btn btn-light" >Daftar</a>
-          </div>
-        </div> 
       </div>
+      <div class="row d-flex">
+        <div class="col">
+          @auth
+          <a href="/admin/dashboard" class="btn btn-outline-light"><i class="fas fa-user"></i></a>
+          @else 
+          <a href="/login" class="btn btn-outline-light" >Masuk</a>
+          <a href="/daftar" class="btn btn-light" >Daftar</a>
+          @endauth
+        </div>
+      </div> 
     </div>
   </nav>
 </header>

@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('beritas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('kategori_id');
+            $table->string('title');
+            $table->text('cover');
+            $table->text('body');
             $table->timestamps();
         });
     }

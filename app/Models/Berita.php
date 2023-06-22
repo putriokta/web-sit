@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Berita extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    function kategori(){
+        return $this->belongsTo(Kategori::class);
+    }
 }
+

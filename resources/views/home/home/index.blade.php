@@ -76,22 +76,23 @@
 
     <div class="row">
 
-      @for ($i = 1; $i <= 4 ; $i++)
+      @foreach ($berita as $item)
           
-    
       <div class="col-md-3">
         <div class="card shadow-sm">
           <div class="wrapper-card-berita">
-            <img src="/img/sekolah.jpg" class="img-card-berita" alt="">
+            <img src="{{ $item->cover }}" class="img-card-berita" alt="">
           </div>
           <div class="p-3">
-            <a href="" class="text-decoration-none"><h5>Camping</h5></a>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe debitis rem corrupti placeat earum minima?</p>
-            <a href="" class="text-decoration-none">Selengkapnya &RightArrow;</a>
+            <h5><b>{{ $item->title }}</b></h5>
+            <p>
+              {!! Illuminate\Support\Str::limit($item->body, 100) !!}
+            </p>
+            <a href="/berita/show/{{ $item->id }}" class="text-decoration-none">Selengkapnya &RightArrow;</a>
           </div>
         </div>
       </div>
-      @endfor
+      @endforeach
 
       <div class="text-center mt-3">
         <a href="" class="btn btn-primary px-5">Selengkapnya <i class="fas fa-arrow-right"></i></a>

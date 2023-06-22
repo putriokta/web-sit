@@ -1,11 +1,17 @@
 <?php
 
+use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminBannerController;
 use App\Http\Controllers\AdminBeritaController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminGaleriController;
 use App\Http\Controllers\AdminKategoriController;
+use App\Http\Controllers\AdminPesanController;
 use App\Http\Controllers\AdminTentangController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\DataOrtuController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Routing\Annotation\Route as AnnotationRoute;
 
@@ -20,14 +26,7 @@ use Symfony\Component\Routing\Annotation\Route as AnnotationRoute;
 |
 */
 
-Route::get('/', function () {
-    // return view('home/index');
-    $data = [
-        "title" => "Home",
-        'content' => 'home/home/index'
-    ];
-    return view('home.layouts.wrapper', $data);
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/tentang', function () {
     $data = [
@@ -67,31 +66,26 @@ Route::get('/galeri', function () {
         'content' => 'home/galeri/index'
     ];
     return view('home.layouts.wrapper', $data);
-});
+}); 
 
-Route::get('/guru', function () {
-    $data = [
-        "title" => "Guru",
-        'content' => 'home/pendaftaran/guru'
-    ];
-    return view('home.layouts.wrapper', $data);
-});
+// Route::get('/guru', function () {
+//     $data = [
+//         "title" => "Guru",
+//         'content' => 'home/pendaftaran/guru'
+//     ];
+//     return view('home.layouts.wrapper', $data);
+// });
 
-Route::get('/siswa', function () {
-    $data = [
-        "title" => "Siswa",
-        'content' => 'home/pendaftaran/siswa'
-    ];
-    return view('home.layouts.wrapper', $data);
-});
+Route::resource('/siswa', SiswaController::class)->middleware('auth');
+Route::resource('/dataortu', DataOrtuController::class);
 
-Route::get('/staff', function () {
-    $data = [
-        "title" => "Staff",
-        'content' => 'home/pendaftaran/staff'
-    ];
-    return view('home.layouts.wrapper', $data);
-});
+// Route::get('/staff', function () {
+//     $data = [
+//         "title" => "Staff",
+//         'content' => 'home/pendaftaran/staff'
+//     ];
+//     return view('home.layouts.wrapper', $data);
+// });
 
 Route::get('/daftar', function () {
     $data = [
@@ -101,24 +95,15 @@ Route::get('/daftar', function () {
     return view('home.layouts.wrapper', $data);
 });
 
-Route::get('/login', function () {
-    $data = [
-        "title" => "Login",
-        'content' => 'home/auth/login'
-    ];
-    return view('home.layouts.wrapper', $data);
-});
+Route::get('/login', [AdminAuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login/do', [AdminAuthController::class, 'doLogin']);
 
-// ADMIN //
+//======================= ADMIN ====================== //
 
-Route::prefix('/admin')->group(function () {
-    Route::get('/dashboard', function(){
-        $data = [
-            'title' => 'Dashboard',
-            'content' => 'home/admin/dashboard/index'
-        ];
-        return view('home.admin.layouts.wrapper', $data);
-    });
+Route::prefix('/admin')->middleware('auth')->group(function () {
+
+    Route::get('/logout', [AdminAuthController::class, 'logout']);
+    Route::get('/dashboard', [AdminDashboardController::class, 'index']);
 
     Route::get('/tentang', [AdminTentangController::class, 'index']);
     Route::put('/update', [AdminTentangController::class, 'update']);
@@ -127,6 +112,7 @@ Route::prefix('/admin')->group(function () {
     Route::resource('/posts/kategori', AdminKategoriController ::class);
 
     Route::resource('/user', AdminUserController::class);
+    Route::resource('/pesan', AdminPesanController::class);
     Route::resource('/banner', AdminBannerController::class);
     Route::resource('/galeri', AdminGaleriController::class);
 });

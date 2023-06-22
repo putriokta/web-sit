@@ -24,10 +24,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="../widgets.html" class="nav-link {{ Request::is('admin/saran*') ? 'active' : '' }}">
+                    <a href="/admin/pesan" class="nav-link {{ Request::is('admin/saran*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
-                        Saran
+                        Pesan
                         {{-- <span class="right badge badge-danger">New</span> --}}
                         </p>
                     </a>
@@ -125,6 +125,16 @@
                 </li> --}}
 
                 <li class="nav-item">
+                    <a href="/admin/siswa" class="nav-link {{ Request::is('admin/posts/siswa*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-sticky-note"></i>
+                        <p>
+                        Pendaftar
+                        {{-- <span class="right badge badge-danger">New</span> --}}
+                        </p>
+                    </a>
+                </li>
+
+                {{-- <li class="nav-item">
                     <a href="#" class="nav-link {{ Request::is('admin/posts*') ? 'menu-is-opening menu-open' : '' }}">
                     <i class="nav-icon fas fa-sticky-note"></i>
                     <p>
@@ -152,7 +162,7 @@
                         </a>
                     </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a href="/admin/banner" class="nav-link {{ Request::is('admin/banner*') ? 'active' : '' }}">
