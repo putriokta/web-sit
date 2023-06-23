@@ -14,7 +14,7 @@
                     @endif
 
                     <form method="POST" action="/dataortu">
-                        @csrf
+                        @csrf 
                         <h5 class="mt-2">Data Ayah :</h5>
 
                         <div class="form-group mt-2">

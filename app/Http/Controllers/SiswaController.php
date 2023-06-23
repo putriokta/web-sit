@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DataOrtu;
 use App\Models\JenisSekolah;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
@@ -61,7 +60,7 @@ class SiswaController extends Controller
         // dd($validatedData);
         Siswa::create($validatedData);
 
-        return redirect('/dataortu')->with('success', ' data berhaasil ditambahkan!');
+        return redirect('/dataortu')->with('success', ' data berhasil ditambahkan!');
     }
 
     /**
