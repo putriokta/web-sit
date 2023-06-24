@@ -18,7 +18,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>
-                        <td>{{ $item->role_id }}</td>
+                        <td>{{ $item->role->role }}</td>
                         <td>
 
                             <div class="d-flex">

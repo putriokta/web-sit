@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -32,7 +33,8 @@ class AdminUserController extends Controller
         //
         $data = [
             'title' => 'Tambah User',
-            'content' => 'home/admin/user/add'
+            'content' => 'home/admin/user/add',
+            'roles' => role::all()
         ];
         return view('home.admin.layouts.wrapper', $data);
     }
@@ -47,6 +49,7 @@ class AdminUserController extends Controller
         $data = $request->validate([
             'name'      => 'required',
             'email'     => 'required|unique:users',
+            'role_id'     => 'required',
             'password'     => 'required|min:3',
             're_password'     => 'required|same:password'
         ]);
@@ -75,8 +78,9 @@ class AdminUserController extends Controller
         //
         $data = [
             'title' => 'Edit User',
-            'user'  => User::find($id),
-            'content' => 'home/admin/user/add'
+            'user'  => User::where('id', $id)->firstOrFail(),
+            'content' => 'home/admin/user/edit',
+            'roles' => role::all()
         ];
         return view('home.admin.layouts.wrapper', $data);
     }
@@ -91,7 +95,8 @@ class AdminUserController extends Controller
         $data = $request->validate([
             'name'      => 'required',
             'email'     => 'required|unique:users,email,'.$user->id,
-            // 'password'     => 'min:3',
+            'role_id'     => 'required',
+            'password'     => 'min:3',
             're_password'     => 'same:password'
         ]);
 

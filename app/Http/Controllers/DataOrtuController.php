@@ -86,7 +86,7 @@ class DataOrtuController extends Controller
         //dd($datavalid);
         DataOrtu::create($datavalid);
 
-        return redirect('/dataortu')->with('success', ' data berhasil ditambahkan!');
+        return redirect('/berkas')->with('success', ' lengkapi berkas!');
     }
 
     /**

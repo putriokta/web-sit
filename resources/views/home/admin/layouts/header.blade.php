@@ -12,7 +12,7 @@
         <i class="fas fa-home"></i>
       </a>
       <li class="nav-item">
-        <a class="nav-link" href="/admin/logout">
+        <a class="nav-link" href="/logout">
           <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>

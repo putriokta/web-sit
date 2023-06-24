@@ -16,6 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->text('desc');
             $table->text('cover');
+            $table->text('desc1');
+            $table->text('desc2');
+            $table->text('desc3');
+            $table->text('bendera');
+            $table->text('logo1');
+            $table->text('logo2');
             $table->timestamps();
         });
     }

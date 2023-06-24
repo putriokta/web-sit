@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\JenisSekolah;
 use App\Models\role;
+use App\Models\Tentang;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -67,6 +68,7 @@ class DatabaseSeeder extends Seeder
             'id' => '3',
             'jenis_sekolah' => 'SMP'
         ]);
+
     }
 
 }

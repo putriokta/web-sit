@@ -33,6 +33,21 @@
                         @enderror
                     </div>
 
+                    <div class="formselect">
+                        <label for="role">Role</label>
+                        <select class="form-control" aria-label="Default select example" name="role_id" id="role" required>
+                            <option></option>
+                            @foreach ($roles as $role)
+                                @if (old('role_id') == $role->id)
+                                <option value="{{ $role->id }}" selected>{{ $role->role }}</option>
+                                @else
+                                <option value="{{ $role->id }}">{{ $role->role }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+
+                    </div>
+
                     <div class="form-group">
                         <label for="">Password</label>
                         <input type="password" name="password" placeholder="******" class="form-control @error('password') is-invalid @enderror" value="{{ old('password')}}">

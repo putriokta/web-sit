@@ -47,7 +47,11 @@
       <div class="row d-flex">
         <div class="col">
           @auth
-          <a href="/admin/dashboard" class="btn btn-outline-light"><i class="fas fa-user"></i></a>
+            @if(Auth::user()->role_id == 1)
+            <a href="/admin/dashboard" class="btn btn-outline-light"><i class="fas fa-user"></i></a>
+            @elseif(Auth::user()->role_id == 2)
+            <a href="/logout" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i></a>
+            @endif
           @else 
           <a href="/login" class="btn btn-outline-light" >Masuk</a>
           <a href="/daftar" class="btn btn-light" >Daftar</a>

@@ -125,7 +125,7 @@
                 </li> --}}
 
                 <li class="nav-item">
-                    <a href="/admin/siswa" class="nav-link {{ Request::is('admin/posts/siswa*') ? 'active' : '' }}">
+                    <a href="/admin/pendaftar" class="nav-link {{ Request::is('admin/pendaftar*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-sticky-note"></i>
                         <p>
                         Pendaftar

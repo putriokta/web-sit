@@ -60,7 +60,7 @@ class SiswaController extends Controller
         // dd($validatedData);
         Siswa::create($validatedData);
 
-        return redirect('/dataortu')->with('success', ' data berhasil ditambahkan!');
+        return redirect('/dataortu')->with('success', 'silahkan diisi!');
     }
 
     /**

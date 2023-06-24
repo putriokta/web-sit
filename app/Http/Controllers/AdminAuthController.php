@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,20 +22,29 @@ class AdminAuthController extends Controller
 
     function doLogin(Request $request)
     {
-        // dd($request->all());
-        $data = $request->validate([
+        $request->validate([
             'email' => 'required',
             'password' => 'required',
         ]);
 
+        $data = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+
         if(Auth::attempt($data)){
-            $request->session()->regenerate();
-            return redirect('/admin/dashboard');
+
+            if (auth()->user()->role_id == 1) {
+                return redirect('/admin/dashboard');
+            }elseif (auth()->user()->role_id == 2) {
+                return redirect('/');
+            // $request->session()->regenerate();
+            // return redirect('/admin/dashboard');
+        }else{
+            return back()->with('loginError', 'Gagal Login, Email atau password tidak ditemukan');
+            }
         }
-
-        return back()->with('loginError', 'Gagal Login, Email atau password tidak ditemukan');
     }
-
     function logout(){
         Auth::logout();
         request()->session()->invalidate();
@@ -42,5 +52,4 @@ class AdminAuthController extends Controller
 
         return redirect('/');
     }
-    
 }

@@ -90,8 +90,9 @@ class AdminBeritaController extends Controller
     {
         //
         $data = [
+            
             'title' => 'Edit Berita',
-            'kategori' => Kategori::get(),
+            'kategori' => Kategori::all(),
             'berita'  => Berita::find($id),
             'content' => 'home/admin/berita/add'
         ];
